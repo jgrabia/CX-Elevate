@@ -12,6 +12,10 @@ body {
   background: #ffffff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Header styles */
 header {
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -59,6 +63,95 @@ nav a {
 
 nav a:hover {
   background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* Enhanced navigation with dropdowns */
+.main-nav {
+  position: relative;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-item { position: relative; }
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  display: inline-block;
+}
+
+.nav-item.has-dropdown > .nav-link:after {
+  content: '▾';
+  margin-left: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 1px solid #e6e8ef;
+  display: none;
+  z-index: 2000;
+}
+
+/* Bridge the hover gap so moving the cursor down doesn't close the menu */
+.nav-item.has-dropdown > .dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.dropdown li { list-style: none; }
+
+.dropdown a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  color: #1e3c72;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown a:hover {
+  background: #f2f5fb;
+  color: #2a5298;
+}
+
+.nav-item.has-dropdown:hover > .dropdown {
+  display: block;
+}
+
+/* Keep open when focusing via keyboard */
+.nav-item.has-dropdown:focus-within > .dropdown {
+  display: block;
+}
+
+.header-cta {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border-radius: 999px;
+  padding: 0.5rem 1rem !important;
+  box-shadow: 0 6px 18px rgba(76, 175, 80, 0.35);
+}
+
+.header-cta:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3f9142 100%);
   transform: translateY(-2px);
 }
 
@@ -136,6 +229,12 @@ main {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
   color: #555;
+}
+
+/* Ensure anchored sections/cards account for sticky header height */
+.section[id],
+.card[id] {
+  scroll-margin-top: 120px;
 }
 
 /* Grid layouts */

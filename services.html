@@ -11,12 +11,27 @@
   <header>
     <div class="header-container">
       <a href="index.html" class="logo">CX <span>Elevate</span></a>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item has-dropdown">
+            <a class="nav-link" href="services.html">Services</a>
+            <ul class="dropdown">
+              <li><a href="#admin-outsourcing">Admin Outsourcing</a></li>
+              <li><a href="#data-migrations">Data Migrations</a></li>
+              <li><a href="#custom-apps">Custom Apps</a></li>
+              <li><a href="#integrations">Integrations</a></li>
+              <li><a href="#strategy">Support Strategy</a></li>
+              <li><a href="#implementation">Implementation</a></li>
+              <li><a href="#tiers">Service Tiers</a></li>
+              <li><a href="#process">Our Process</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link header-cta" href="contact.html">Book a consultation</a></li>
+        </ul>
+    </nav>
     </div>
   </header>
 
@@ -29,10 +44,10 @@
     </section>
 
     <!-- Services Overview -->
-    <section class="section">
-      <h2>What We Offer</h2>
+    <section class="section" id="what-we-offer">
+    <h2>What We Offer</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card" id="admin-outsourcing">
           <h3>Zendesk Admin Outsourcing (BPO)</h3>
           <p>Let our certified Zendesk administrators manage your instance so your team can focus on delivering exceptional support.</p>
           <ul>
@@ -46,7 +61,7 @@
           <p><strong>Perfect for:</strong> Organizations looking to reduce administrative overhead while ensuring optimal Zendesk performance.</p>
         </div>
         
-        <div class="card">
+        <div class="card" id="data-migrations">
           <h3>Data Conversions & Migrations</h3>
           <p>Seamless transitions from legacy systems or other platforms into Zendesk, with zero disruption to your operations.</p>
           <ul>
@@ -60,7 +75,7 @@
           <p><strong>Perfect for:</strong> Companies transitioning from other support platforms or upgrading their Zendesk implementation.</p>
         </div>
         
-        <div class="card">
+        <div class="card" id="custom-apps">
           <h3>Custom Zendesk Apps</h3>
           <p>Tailored apps to extend Zendesk functionality and meet your unique business needs and workflows.</p>
           <ul>
@@ -74,7 +89,7 @@
           <p><strong>Perfect for:</strong> Organizations with specific business processes that require custom functionality beyond standard Zendesk features.</p>
         </div>
         
-        <div class="card">
+        <div class="card" id="integrations">
           <h3>Custom Integrations</h3>
           <p>Connect Zendesk with CRMs, ERPs, and other tools to create a unified support ecosystem.</p>
           <ul>
@@ -88,7 +103,7 @@
           <p><strong>Perfect for:</strong> Companies needing seamless data flow between Zendesk and their existing business systems.</p>
         </div>
         
-        <div class="card">
+        <div class="card" id="strategy">
           <h3>Support Strategy & Optimization</h3>
           <p>Audit, refine, and elevate your support workflows for maximum efficiency and customer satisfaction.</p>
           <ul>
@@ -102,7 +117,7 @@
           <p><strong>Perfect for:</strong> Organizations looking to improve support efficiency, reduce costs, and enhance customer satisfaction.</p>
         </div>
         
-        <div class="card">
+        <div class="card" id="implementation">
           <h3>Zendesk Implementation & Setup</h3>
           <p>Complete Zendesk implementation from initial setup to go-live, ensuring optimal configuration for your business needs.</p>
           <ul>
@@ -119,7 +134,7 @@
     </section>
 
     <!-- Service Tiers -->
-    <section class="section">
+    <section class="section" id="tiers">
       <h2>Service Tiers</h2>
       <div class="grid">
         <div class="card">
@@ -197,7 +212,7 @@
     </section>
 
     <!-- Process Section -->
-    <section class="section">
+    <section class="section" id="process">
       <h2>Our Process</h2>
       <div class="grid">
         <div class="card">
@@ -241,7 +256,7 @@
             <li>User training and adoption</li>
             <li>Performance optimization</li>
             <li>Ongoing support and maintenance</li>
-          </ul>
+    </ul>
         </div>
       </div>
     </section>
