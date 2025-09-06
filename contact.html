@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - CX Elevate | Get in Touch</title>
+  <meta name="description" content="Contact CX Elevate for expert Zendesk consulting services. Get in touch for a free consultation about your support operations.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">CX <span>Elevate</span></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Contact Us</h1>
+      <h2>Let's Transform Your Support Operations Together</h2>
+      <p>Ready to elevate your customer experience? Get in touch with our team of Zendesk experts for a free consultation about your support operations.</p>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section">
+      <h2>Get in Touch</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>📍 Our Location</h3>
+          <p><strong>CX Elevate</strong><br>
+          Remote-first company<br>
+          Serving clients worldwide</p>
+          <p><strong>Virtual Meetings:</strong><br>
+          Available via Zoom, Teams, or Google Meet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section">
+      <h2>Send Us a Message</h2>
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form class="contact-form" id="contactForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label for="company">Company *</label>
+              <input type="text" id="company" name="company" required>
+            </div>
+            <div>
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 1rem;">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div style="margin-bottom: 1rem;">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          
+          <div style="margin-bottom: 1rem;">
+            <label for="summary">Brief summary *</label>
+            <textarea id="summary" name="summary" rows="5" required placeholder="Briefly describe what you're looking for"></textarea>
+          </div>
+          
+          <button type="submit">Send Message</button>
+          <p id="formStatus" style="margin-top: 1rem; font-size: 0.95rem;"></p>
+        </form>
+      </div>
+    </section>
+    <script>
+      const form = document.getElementById('contactForm');
+      const statusEl = document.getElementById('formStatus');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        statusEl.textContent = 'Sending...';
+        statusEl.style.color = '#333';
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (res.ok && data.ok) {
+            statusEl.textContent = 'Thanks! Your message has been sent.';
+            statusEl.style.color = '#2e7d32';
+            form.reset();
+          } else {
+            statusEl.textContent = data.error || 'Something went wrong. Please try again later.';
+            statusEl.style.color = '#c62828';
+          }
+        } catch (err) {
+          statusEl.textContent = 'Network error. Please try again later.';
+          statusEl.style.color = '#c62828';
+        }
+      });
+    </script>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>How quickly can you start a project?</h3>
+          <p>Most projects can begin within 1-2 weeks of contract signing. For urgent needs, we offer expedited onboarding for select services.</p>
+        </div>
+        
+        <div class="card">
+          <h3>Do you work with international clients?</h3>
+          <p>Yes! We're a remote-first company and work with clients worldwide. We're experienced in handling different time zones and cultural considerations.</p>
+        </div>
+        
+        <div class="card">
+          <h3>What's included in a free consultation?</h3>
+          <p>Our free consultation includes a 30-minute discovery call, initial assessment of your current setup, and recommendations for improvement opportunities.</p>
+        </div>
+        
+        <div class="card">
+          <h3>Do you provide ongoing support?</h3>
+          <p>Yes, we offer various ongoing support options including managed services, maintenance contracts, and on-demand consulting.</p>
+        </div>
+        
+        <div class="card">
+          <h3>Can you help with existing Zendesk setups?</h3>
+          <p>Absolutely! We specialize in optimizing existing Zendesk implementations, fixing issues, and enhancing functionality.</p>
+        </div>
+        
+        <div class="card">
+          <h3>What makes CX Elevate different?</h3>
+          <p>Led by a founder with 17 years of hands-on support leadership, deep Zendesk expertise, and a partnership-first approach.</p>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Office Hours -->
+    <section class="section">
+      <h2>Office Hours</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Monday - Friday</h3>
+          <p><strong>8:00 AM - 6:00 PM EST</strong></p>
+          <p>General inquiries, consultations, and project work</p>
+        </div>
+        
+        <div class="card">
+          <h3>Saturday</h3>
+          <p><strong>9:00 AM - 2:00 PM EST</strong></p>
+          <p>Limited support by appointment</p>
+        </div>
+        
+        <div class="card">
+          <h3>Sunday</h3>
+          <p><strong>By agreement</strong></p>
+          <p>On-call availability for premium clients</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>CX Elevate</h3>
+        <p>Your partner in building world-class support operations with expert Zendesk solutions and custom integrations.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Services</h3>
+        <a href="services.html">Zendesk Admin Outsourcing</a>
+        <a href="services.html">Data Migrations</a>
+        <a href="services.html">Custom Development</a>
+        <a href="services.html">Support Strategy</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>📧 info@cxelevate.com</p>
+        <p>📞 (555) 123-4567</p>
+        <p>📍 Remote-first company</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 CX Elevate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
