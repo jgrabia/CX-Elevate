@@ -189,6 +189,17 @@ main {
   color: #555;
 }
 
+.hero-rotator {
+  font-size: 1.15rem;
+  color: #2a5298;
+  margin-bottom: 1.5rem;
+}
+
+.rotating-text {
+  display: inline-block;
+  min-width: 220px;
+}
+
 .cta-button {
   display: inline-block;
   background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
@@ -258,6 +269,13 @@ main {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
+
+/* Reveal animations */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Counter animation style */
+.stat-number { font-variant-numeric: tabular-nums; }
 
 .card h3 {
   color: #1e3c72;
