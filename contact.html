@@ -18,6 +18,7 @@
           <li class="nav-item has-dropdown">
             <a class="nav-link" href="services.html">Services</a>
             <ul class="dropdown">
+              <li><a href="modernization.html">AI Software Modernization</a></li>
               <li><a href="services.html#admin-outsourcing">Admin Outsourcing</a></li>
               <li><a href="services.html#data-migrations">Data Migrations</a></li>
               <li><a href="services.html#custom-apps">Custom Apps</a></li>
@@ -97,19 +98,43 @@
     <script>
       const form = document.getElementById('contactForm');
       const statusEl = document.getElementById('formStatus');
+      const CONTACT_TIMEOUT_MS = 45000;
+
+      async function parseJsonResponse(res) {
+        const text = await res.text();
+        if (!text) return {};
+        try {
+          return JSON.parse(text);
+        } catch {
+          return { _parseError: true, raw: text.slice(0, 200) };
+        }
+      }
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         statusEl.textContent = 'Sending...';
         statusEl.style.color = '#333';
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), CONTACT_TIMEOUT_MS);
         try {
           const res = await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: controller.signal
           });
-          const data = await res.json();
+          clearTimeout(timeoutId);
+          const data = await parseJsonResponse(res);
+          if (data._parseError) {
+            statusEl.textContent =
+              res.status === 404
+                ? 'Form backend is not available (404). The site may be on static hosting without the Node server—email us directly or redeploy with server.js.'
+                : 'Server returned an unexpected response. Please email us directly.';
+            statusEl.style.color = '#c62828';
+            return;
+          }
           if (res.ok && data.ok) {
             statusEl.textContent = 'Thanks! Your message has been sent.';
             statusEl.style.color = '#2e7d32';
@@ -119,7 +144,15 @@
             statusEl.style.color = '#c62828';
           }
         } catch (err) {
-          statusEl.textContent = 'Network error. Please try again later.';
+          clearTimeout(timeoutId);
+          console.error('Form submission error:', err);
+          if (err.name === 'AbortError') {
+            statusEl.textContent =
+              'Request timed out. The mail server may be slow or unreachable—please email us directly.';
+          } else {
+            statusEl.textContent =
+              'Network error. Please try again later. If this persists, please email us directly.';
+          }
           statusEl.style.color = '#c62828';
         }
       });
@@ -196,6 +229,7 @@
       </div>
       <div class="footer-section">
         <h3>Services</h3>
+        <a href="modernization.html">AI Software Modernization</a>
         <a href="services.html">Zendesk Admin Outsourcing</a>
         <a href="services.html">Data Migrations</a>
         <a href="services.html">Custom Development</a>
